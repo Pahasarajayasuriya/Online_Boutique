@@ -41,15 +41,19 @@ import torch
 import numpy as np
 import torch.nn.functional as F
 from itertools import combinations
-from transformers import AutoTokenizer, AutoModel
+from transformers import (
+    AutoTokenizer,
+    RobertaModel,
+)
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 SERVICES_ROOT       = "."
 OUTPUT_JSON_DIR     = "pipeline_output"
 EMBEDDINGS_FILE     = "embeddings.pkl"
-REPORT_FILE         = "clone_report.json"
+REPORT_FILE         = "clone_report2.json"
 
 MODEL_NAME          = "microsoft/graphcodebert-base"
+LORA_ADAPTER_DIR    = "model"   # subdirectory containing the BCB fine-tuned adapter
 CODE_LENGTH         = 256    # official GraphCodeBERT value
 DATA_FLOW_LENGTH    = 64     # official GraphCodeBERT value
 CLONE_THRESHOLD     = 0.90   # cosine similarity threshold for clone detection
@@ -396,9 +400,11 @@ def extract_tokens_and_dfg(code: str, lang: str, parsers: dict):
     tree             = parser.parse(bytes(code, "utf-8"))
     file_root        = tree.root_node
 
-    # Collect all leaf tokens across the whole function
+    # Collect all leaf tokens across the whole function (skipping comments)
     tokens_index = []
     def collect(node):
+        if "comment" in node.type:
+            return
         if node.child_count == 0 and node.start_byte != node.end_byte:
             tokens_index.append((node.start_byte, node.end_byte))
         for c in node.children:
@@ -495,6 +501,8 @@ def strategy_a_slice(code: str, dfg: list,
     token_line_map = {}   # token_index (int) → line_number (1-based int)
     idx = [0]
     def collect_lines(node):
+        if "comment" in node.type:
+            return
         if node.child_count == 0 and node.start_byte != node.end_byte:
             token_line_map[idx[0]] = node.start_point[0] + 1
             idx[0] += 1
@@ -565,9 +573,134 @@ def strategy_a_slice(code: str, dfg: list,
 #  Official input format: code tokens + DFG → 768-dim vector
 # ══════════════════════════════════════════════════════════════════════════════
 
-def to_embedding(code_tokens: list, dfg: list, tokenizer, model):
+def resolve_lora_adapter_dir(adapter_dir: str | None = None):
     """
-    Convert code tokens + DFG to a 768-dim GraphCodeBERT embedding.
+    Return a directory that looks like a PEFT LoRA checkpoint, or None.
+
+    We prefer the Hugging Face PEFT format:
+      - adapter_config.json
+      - adapter_model.safetensors (or adapter_model.bin)
+
+    Search order:
+      1. Explicit adapter_dir argument
+      2. LORA_ADAPTER_DIR config value (default: "model" subdir)
+      3. <script_dir>/model/            ← preferred: BCB fine-tuned checkpoint
+      4. Current working directory
+      5. Script directory (fallback to any adapter found nearby)
+    """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    candidates = []
+    if adapter_dir:
+        candidates.append(adapter_dir)
+        # Also try an explicit adapter_dir/model sub-path in case caller passes root
+        candidates.append(os.path.join(adapter_dir, "model"))
+    # Resolve LORA_ADAPTER_DIR as a relative path from script dir
+    lora_rel = os.path.join(script_dir, LORA_ADAPTER_DIR)
+    candidates.extend([
+        lora_rel,
+        os.path.join(script_dir, "model"),
+        os.path.join(os.getcwd(), "model"),
+        os.getcwd(),
+        script_dir,
+    ])
+
+    seen = set()
+    for candidate in candidates:
+        if not candidate:
+            continue
+        candidate = os.path.abspath(candidate)
+        if candidate in seen or not os.path.isdir(candidate):
+            continue
+        seen.add(candidate)
+
+        has_config = os.path.exists(os.path.join(candidate, "adapter_config.json"))
+        has_weights = (
+            os.path.exists(os.path.join(candidate, "adapter_model.safetensors")) or
+            os.path.exists(os.path.join(candidate, "adapter_model.bin"))
+        )
+        if has_config and has_weights:
+            return candidate
+    return None
+
+
+def load_graphcodebert_model(adapter_dir: str | None = None):
+    """
+    Load GraphCodeBERT for embeddings, optionally with a local LoRA adapter.
+
+    Architecture note:
+      The BCB fine-tuned LoRA adapter was trained with RobertaModel as the
+      base (task_type=FEATURE_EXTRACTION), NOT RobertaForSequenceClassification.
+      Keys in adapter_model.safetensors are keyed as:
+          base_model.model.encoder.layer.X.attention.self.{query,value}.lora_*
+      Loading into RobertaForSequenceClassification produces a path mismatch
+      (.roberta.encoder vs .encoder) so the adapter weights are never applied.
+      We therefore load the plain RobertaModel to match training exactly.
+
+    For function embeddings we extract the [CLS] hidden state — the same
+    representation used during training to compute clone similarity.
+    """
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    # Use plain RobertaModel — matches the training architecture exactly
+    base_model = RobertaModel.from_pretrained(
+        MODEL_NAME,
+        add_pooling_layer=False,
+    )
+
+    resolved_adapter_dir = resolve_lora_adapter_dir(adapter_dir)
+    if not resolved_adapter_dir:
+        return tokenizer, base_model.eval(), None
+
+    try:
+        from peft import PeftModel
+    except ImportError as e:
+        raise ImportError(
+            "LoRA adapter files were found, but PEFT is not installed. "
+            "Run: pip install peft"
+        ) from e
+
+    model = PeftModel.from_pretrained(base_model, resolved_adapter_dir)
+    return tokenizer, model.eval(), resolved_adapter_dir
+
+
+def get_encoder_hidden_states(model, input_ids, position_ids, attention_mask):
+    """
+    Return token hidden states from the GraphCodeBERT encoder regardless of
+    whether we loaded the plain RobertaModel or a LoRA-wrapped PeftModel.
+
+    With base = RobertaModel (BCB training architecture):
+      - PeftModel delegates __getattr__ to RobertaModel, which has no .roberta
+      - We call model() directly; RobertaModel returns BaseModelOutput with
+        .last_hidden_state → (batch, seq_len, hidden_size)
+
+    With base = RobertaForSequenceClassification (legacy fallback):
+      - model.roberta resolves to the inner RobertaModel via __getattr__
+      - We call roberta() directly to skip the classification head
+    """
+    # Try .roberta sub-model (RobertaForSequenceClassification path)
+    roberta = getattr(model, "roberta", None)
+    if roberta is not None and callable(roberta):
+        return roberta(
+            input_ids=input_ids,
+            position_ids=position_ids,
+            attention_mask=attention_mask,
+        )[0]
+
+    # Direct call — works for PeftModel(RobertaModel) and plain RobertaModel
+    out = model(
+        input_ids=input_ids,
+        position_ids=position_ids,
+        attention_mask=attention_mask,
+    )
+    if hasattr(out, "last_hidden_state"):
+        return out.last_hidden_state
+    # Final fallback: out is a tuple, first element is last_hidden_state
+    return out[0]
+
+
+def build_graphcodebert_inputs(code_tokens: list, dfg: list, tokenizer):
+    """
+    Convert code tokens + DFG into GraphCodeBERT tensor inputs.
 
     Input sequence layout:
         [CLS] <bpe_code_tokens> [SEP] <dfg_var_nodes> [PAD...]
@@ -630,17 +763,58 @@ def to_embedding(code_tokens: list, dfg: list, tokenizer, model):
             if op < max_len and set(src_idxs) & set(other_src):
                 attn[sp, op] = True
 
-    input_ids = torch.tensor([src_ids], dtype=torch.long)
-    pos_ids   = torch.tensor([pos_idx], dtype=torch.long)
-    attn_t    = torch.from_numpy(np.array([attn], dtype=np.bool_))
+    input_ids = torch.tensor(src_ids, dtype=torch.long)
+    pos_ids   = torch.tensor(pos_idx, dtype=torch.long)
+    attn_t    = torch.from_numpy(attn)
+    return input_ids, pos_ids, attn_t
+
+
+def to_embedding(code_tokens: list, dfg: list, tokenizer, model):
+    """
+    Convert code tokens + DFG to a 768-dim GraphCodeBERT embedding.
+    """
+    input_ids, pos_ids, attn_t = build_graphcodebert_inputs(
+        code_tokens,
+        dfg,
+        tokenizer,
+    )
 
     with torch.no_grad():
-        out = model(input_ids=input_ids,
-                    position_ids=pos_ids,
-                    attention_mask=attn_t)
+        out = get_encoder_hidden_states(
+            model,
+            input_ids=input_ids.unsqueeze(0),
+            position_ids=pos_ids.unsqueeze(0),
+            attention_mask=attn_t.unsqueeze(0),
+        )
 
     # [CLS] token embedding = function semantic fingerprint
-    return out.last_hidden_state[0, 0, :].cpu()
+    return out[0, 0, :].cpu()
+
+
+def score_clone_similarity(record_a: dict, record_b: dict, model):
+    """
+    Score a function pair using cosine similarity between the fine-tuned CLS
+    representations.
+    """
+    ids = torch.stack([record_a["input_ids"], record_b["input_ids"]], dim=0)
+    pos = torch.stack([record_a["position_ids"], record_b["position_ids"]], dim=0)
+    attn = torch.stack([record_a["attention_mask"], record_b["attention_mask"]], dim=0)
+
+    with torch.no_grad():
+        hidden = get_encoder_hidden_states(
+            model,
+            input_ids=ids,
+            position_ids=pos,
+            attention_mask=attn,
+        )
+
+    cls_a = hidden[0, 0, :]
+    cls_b = hidden[1, 0, :]
+    cosine = torch.nn.functional.cosine_similarity(
+        cls_a.unsqueeze(0),
+        cls_b.unsqueeze(0),
+    ).item()
+    return cosine
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -674,7 +848,8 @@ def find_service_files(root: str) -> list:
 # ══════════════════════════════════════════════════════════════════════════════
 
 def main():
-    global SERVICES_ROOT, OUTPUT_JSON_DIR, EMBEDDINGS_FILE, REPORT_FILE, CLONE_THRESHOLD
+    global SERVICES_ROOT, OUTPUT_JSON_DIR, EMBEDDINGS_FILE, REPORT_FILE
+    global CLONE_THRESHOLD, LORA_ADAPTER_DIR
 
     # ── CLI arguments (all optional — fall back to CONFIG defaults) ────────
     parser = argparse.ArgumentParser(
@@ -689,11 +864,15 @@ def main():
         help="Path to save/load embeddings .pkl file "
              "(default: ./embeddings.pkl)")
     parser.add_argument("--report", default=None,
-        help="Path for the clone_report.json output "
-             "(default: ./clone_report.json)")
+        help="Path for the clone_report2.json output "
+             "(default: ./clone_report2.json)")
     parser.add_argument("--threshold", type=float, default=None,
         help=f"Cosine similarity threshold for clone detection "
              f"(default: {CLONE_THRESHOLD})")
+    parser.add_argument("--lora-adapter-dir", default=None,
+        help="Directory containing PEFT adapter files "
+             "(adapter_config.json + adapter_model.safetensors). "
+             "If omitted, auto-detect from the repo root/current directory.")
     args = parser.parse_args()
 
     # Apply CLI overrides
@@ -702,6 +881,7 @@ def main():
     if args.embeddings:            EMBEDDINGS_FILE = args.embeddings
     if args.report:                REPORT_FILE     = args.report
     if args.threshold is not None: CLONE_THRESHOLD = args.threshold
+    if args.lora_adapter_dir:      LORA_ADAPTER_DIR = args.lora_adapter_dir
 
     print("=" * 65)
     print("  GraphCodeBERT Pipeline — Phase 1")
@@ -712,6 +892,7 @@ def main():
     print(f"  Embeddings    : {EMBEDDINGS_FILE}")
     print(f"  Report        : {REPORT_FILE}")
     print(f"  Threshold     : {CLONE_THRESHOLD}")
+    print(f"  LoRA adapter  : {LORA_ADAPTER_DIR}")
 
     # ── [1/5] Build parsers ────────────────────────────────────────
     print("\n[1/5] Building tree-sitter parsers...")
@@ -839,9 +1020,11 @@ def main():
     # ── [4/5] GraphCodeBERT embeddings ────────────────────────────
     print(f"\n[4/5] Generating GraphCodeBERT embeddings...")
     print(f"  Loading: {MODEL_NAME}")
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-    model     = AutoModel.from_pretrained(MODEL_NAME)
-    model.eval()
+    tokenizer, model, adapter_dir = load_graphcodebert_model(LORA_ADAPTER_DIR)
+    if adapter_dir:
+        print(f"  LoRA adapter: {adapter_dir}")
+    else:
+        print("  LoRA adapter: none found, using base GraphCodeBERT")
     print("  Model ready.\n")
 
     embedding_db = {}

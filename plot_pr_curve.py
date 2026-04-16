@@ -1,12 +1,12 @@
 """
 Online Boutique — Generate 4 separate plot files from clone_report.json
-Usage: python3 plot_ob_separate.py [path/to/clone_report.json]
+Usage: python3 plot_ob2_separate.py [path/to/clone_report.json]
 
 Outputs:
-  ob_fig1_score_distribution.png
-  ob_fig2_top15_clones.png
-  ob_fig3_language_pairs.png
-  ob_fig4_threshold_sweep.png
+  ob2_fig1_score_distribution.png
+  ob2_fig2_top15_clones.png
+  ob2_fig3_language_pairs.png
+  ob2_fig4_threshold_sweep.png
 """
 
 import json
@@ -86,7 +86,7 @@ fig1, ax = plt.subplots(figsize=(8, 5))
 fig1.patch.set_facecolor('#FAFAFA')
 ax.set_facecolor('#F8F9FA')
 
-bins = np.linspace(0.65, 1.01, 36)
+bins = np.linspace(0.0, 1.01, 51)  # 0.0 to 1.0 with 0.02 width bins
 ax.hist(non_scores,   bins=bins, alpha=0.55, color='#EF5350',
         label=f'Non-clone ({len(non_scores):,})', edgecolor='white', linewidth=0.4)
 ax.hist(clone_scores, bins=bins, alpha=0.75, color='#42A5F5',
@@ -106,8 +106,8 @@ ax.legend(fontsize=9)
 ax.grid(**GRID_KW)
 
 fig1.tight_layout()
-fig1.savefig('ob_fig1_score_distribution.png', dpi=150, bbox_inches='tight', facecolor='#FAFAFA')
-print('Saved → ob_fig1_score_distribution.png')
+fig1.savefig('ob2_fig1_score_distribution.png', dpi=150, bbox_inches='tight', facecolor='#FAFAFA')
+print('Saved → ob2_fig1_score_distribution.png')
 plt.close(fig1)
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -162,8 +162,8 @@ ax.legend(handles=legend_patches, fontsize=8.5, loc='lower right',
           title='Language Pair', title_fontsize=9)
 
 fig2.tight_layout()
-fig2.savefig('ob_fig2_top15_clones.png', dpi=150, bbox_inches='tight', facecolor='#FAFAFA')
-print('Saved → ob_fig2_top15_clones.png')
+fig2.savefig('ob2_fig2_top15_clones.png', dpi=150, bbox_inches='tight', facecolor='#FAFAFA')
+print('Saved → ob2_fig2_top15_clones.png')
 plt.close(fig2)
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -212,8 +212,8 @@ for bar, val in zip(bars, vals_s):
 fig3.suptitle('Language Distribution of Detected Clone Pairs\nOnline Boutique · Zero-Shot GraphCodeBERT',
               fontsize=13, fontweight='bold', y=1.01)
 fig3.tight_layout()
-fig3.savefig('ob_fig3_language_pairs.png', dpi=150, bbox_inches='tight', facecolor='#FAFAFA')
-print('Saved → ob_fig3_language_pairs.png')
+fig3.savefig('ob2_fig3_language_pairs.png', dpi=150, bbox_inches='tight', facecolor='#FAFAFA')
+print('Saved → ob2_fig3_language_pairs.png')
 plt.close(fig3)
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -251,8 +251,8 @@ ax.set_xlim(0.70, 1.0)
 ax.set_ylim(-0.05, 1.05)
 
 fig4.tight_layout()
-fig4.savefig('ob_fig4_threshold_sweep.png', dpi=150, bbox_inches='tight', facecolor='#FAFAFA')
-print('Saved → ob_fig4_threshold_sweep.png')
+fig4.savefig('ob2_fig4_threshold_sweep.png', dpi=150, bbox_inches='tight', facecolor='#FAFAFA')
+print('Saved → ob2_fig4_threshold_sweep.png')
 plt.close(fig4)
 
 print('\nAll 4 figures saved successfully.')
