@@ -1,0 +1,79 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdService.java",
+  "function": "getAdsByCategory",
+  "lang": "java",
+  "lines": "123-125",
+  "slicing_stats": {
+    "original_tokens": 20,
+    "slice_tokens": 20,
+    "original_lines": 3,
+    "kept_lines": 3,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3
+  ],
+  "slice_preview": "  private Collection<Ad> getAdsByCategory(String category) {\n    return adsMap.get(category);\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "Collection",
+    "<",
+    "Ad",
+    ">",
+    "getAdsByCategory",
+    "(",
+    "String",
+    "category",
+    ")",
+    "{",
+    "return",
+    "adsMap",
+    ".",
+    "get",
+    "(",
+    "category",
+    ")",
+    ";",
+    "}"
+  ],
+  "slice_dfg_preview": [
+    [
+      "adsMap",
+      12,
+      "computedFrom",
+      [
+        "adsMap"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "get",
+      14,
+      "computedFrom",
+      [
+        "get"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "category",
+      16,
+      "computedFrom",
+      [
+        "category"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdServiceClient.java",
+  "function": "shutdown",
+  "lang": "java",
+  "lines": "55-57",
+  "slicing_stats": {
+    "original_tokens": 24,
+    "slice_tokens": 24,
+    "original_lines": 3,
+    "kept_lines": 3,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3
+  ],
+  "slice_preview": "  private void shutdown() throws InterruptedException {\n    channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "void",
+    "shutdown",
+    "(",
+    ")",
+    "throws",
+    "InterruptedException",
+    "{",
+    "channel",
+    ".",
+    "shutdown",
+    "(",
+    ")",
+    ".",
+    "awaitTermination",
+    "(",
+    "5",
+    ",",
+    "TimeUnit",
+    "."
+  ],
+  "slice_dfg_preview": [
+    [
+      "channel",
+      8,
+      "computedFrom",
+      [
+        "channel"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "shutdown",
+      10,
+      "computedFrom",
+      [
+        "shutdown"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "awaitTermination",
+      14,
+      "computedFrom",
+      [
+        "awaitTermination"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "TimeUnit",
+      18,
+      "computedFrom",
+      [
+        "TimeUnit"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "SECONDS",
+      20,
+      "computedFrom",
+      [
+        "SECONDS"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

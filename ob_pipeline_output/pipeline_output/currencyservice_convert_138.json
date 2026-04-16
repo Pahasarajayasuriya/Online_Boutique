@@ -1,0 +1,130 @@
+{
+  "service": "currencyservice",
+  "file": "ob_workspace/currencyservice/server.js",
+  "function": "convert",
+  "lang": "javascript",
+  "lines": "138-169",
+  "slicing_stats": {
+    "original_tokens": 192,
+    "slice_tokens": 192,
+    "original_lines": 32,
+    "kept_lines": 32,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+  ],
+  "slice_preview": "function convert (call, callback) {\n  try {\n    _getCurrencyData((data) => {\n      const request = call.request;\n\n      // Convert: from_currency --> EUR\n      const from = request.from;\n      const euros = _carry({\n        units: from.units / data[from.currency_code],\n        nanos: from.nanos / data[from.currency_code]\n      });\n\n      euros.nanos = Math.round(euros.nanos);\n\n      // Convert: EUR --> to_currency\n      const result = _carry({\n        units: euros.units * data[request.to_code],\n",
+  "slice_tokens_preview": [
+    "function",
+    "convert",
+    "(",
+    "call",
+    ",",
+    "callback",
+    ")",
+    "{",
+    "try",
+    "{",
+    "_getCurrencyData",
+    "(",
+    "(",
+    "data",
+    ")",
+    "=>",
+    "{",
+    "const",
+    "request",
+    "="
+  ],
+  "slice_dfg_preview": [
+    [
+      "_getCurrencyData",
+      10,
+      "computedFrom",
+      [
+        "_getCurrencyData"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "err",
+      169,
+      "computedFrom",
+      [
+        "err"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "logger",
+      172,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "err",
+      178,
+      "computedFrom",
+      [
+        "err"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "callback",
+      183,
+      "computedFrom",
+      [
+        "callback"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

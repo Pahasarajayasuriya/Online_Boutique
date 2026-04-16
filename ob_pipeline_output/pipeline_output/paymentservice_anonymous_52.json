@@ -1,0 +1,90 @@
+{
+  "service": "paymentservice",
+  "file": "ob_workspace/paymentservice/server.js",
+  "function": "<anonymous>",
+  "lang": "javascript",
+  "lines": "52-54",
+  "slicing_stats": {
+    "original_tokens": 22,
+    "slice_tokens": 22,
+    "original_lines": 3,
+    "kept_lines": 3,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3
+  ],
+  "slice_preview": "  static CheckHandler(call, callback) {\n    callback(null, { status: 'SERVING' });\n  }",
+  "slice_tokens_preview": [
+    "static",
+    "CheckHandler",
+    "(",
+    "call",
+    ",",
+    "callback",
+    ")",
+    "{",
+    "callback",
+    "(",
+    "null",
+    ",",
+    "{",
+    "status",
+    ":",
+    "'",
+    "SERVING",
+    "'",
+    "}",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "CheckHandler",
+      1,
+      "computedFrom",
+      [
+        "CheckHandler"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "call",
+      3,
+      "computedFrom",
+      [
+        "call"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "callback",
+      5,
+      "computedFrom",
+      [
+        "callback"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "callback",
+      8,
+      "computedFrom",
+      [
+        "callback"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

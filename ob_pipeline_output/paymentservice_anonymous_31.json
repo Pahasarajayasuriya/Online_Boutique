@@ -1,0 +1,78 @@
+{
+  "service": "paymentservice",
+  "file": "ob_workspace/paymentservice/charge.js",
+  "function": "<anonymous>",
+  "lang": "javascript",
+  "lines": "31-34",
+  "slicing_stats": {
+    "original_tokens": 18,
+    "slice_tokens": 18,
+    "original_lines": 4,
+    "kept_lines": 4,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "slice_preview": "  constructor (message) {\n    super(message);\n    this.code = 400; // Invalid argument error\n  }",
+  "slice_tokens_preview": [
+    "constructor",
+    "(",
+    "message",
+    ")",
+    "{",
+    "super",
+    "(",
+    "message",
+    ")",
+    ";",
+    "this",
+    ".",
+    "code",
+    "=",
+    "400",
+    ";",
+    "// Invalid argument error",
+    "}"
+  ],
+  "slice_dfg_preview": [
+    [
+      "constructor",
+      0,
+      "computedFrom",
+      [
+        "constructor"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "message",
+      2,
+      "computedFrom",
+      [
+        "message"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "message",
+      7,
+      "computedFrom",
+      [
+        "message"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

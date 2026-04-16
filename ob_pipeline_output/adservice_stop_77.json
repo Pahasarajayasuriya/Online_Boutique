@@ -1,0 +1,104 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdService.java",
+  "function": "stop",
+  "lang": "java",
+  "lines": "77-82",
+  "slicing_stats": {
+    "original_tokens": 29,
+    "slice_tokens": 29,
+    "original_lines": 6,
+    "kept_lines": 6,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "slice_preview": "  private void stop() {\n    if (server != null) {\n      healthMgr.clearStatus(\"\");\n      server.shutdown();\n    }\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "void",
+    "stop",
+    "(",
+    ")",
+    "{",
+    "if",
+    "(",
+    "server",
+    "!=",
+    "null",
+    ")",
+    "{",
+    "healthMgr",
+    ".",
+    "clearStatus",
+    "(",
+    "\"",
+    "\"",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "server",
+      8,
+      "computedFrom",
+      [
+        "server"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "healthMgr",
+      13,
+      "computedFrom",
+      [
+        "healthMgr"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "clearStatus",
+      15,
+      "computedFrom",
+      [
+        "clearStatus"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "server",
+      21,
+      "computedFrom",
+      [
+        "server"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "shutdown",
+      23,
+      "computedFrom",
+      [
+        "shutdown"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

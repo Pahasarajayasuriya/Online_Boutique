@@ -1,0 +1,108 @@
+{
+  "service": "paymentservice",
+  "file": "ob_workspace/paymentservice/server.js",
+  "function": "<anonymous>",
+  "lang": "javascript",
+  "lines": "41-50",
+  "slicing_stats": {
+    "original_tokens": 65,
+    "slice_tokens": 65,
+    "original_lines": 10,
+    "kept_lines": 10,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "slice_preview": "  static ChargeServiceHandler(call, callback) {\n    try {\n      logger.info(`PaymentService#Charge invoked with request ${JSON.stringify(call.request)}`);\n      const response = charge(call.request);\n      callback(null, response);\n    } catch (err) {\n      console.warn(err);\n      callback(err);\n    }\n  }",
+  "slice_tokens_preview": [
+    "static",
+    "ChargeServiceHandler",
+    "(",
+    "call",
+    ",",
+    "callback",
+    ")",
+    "{",
+    "try",
+    "{",
+    "logger",
+    ".",
+    "info",
+    "(",
+    "`",
+    "${",
+    "JSON",
+    ".",
+    "stringify",
+    "("
+  ],
+  "slice_dfg_preview": [
+    [
+      "ChargeServiceHandler",
+      1,
+      "computedFrom",
+      [
+        "ChargeServiceHandler"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "call",
+      3,
+      "computedFrom",
+      [
+        "call"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "callback",
+      5,
+      "computedFrom",
+      [
+        "callback"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "logger",
+      10,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "JSON",
+      16,
+      "computedFrom",
+      [
+        "JSON"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

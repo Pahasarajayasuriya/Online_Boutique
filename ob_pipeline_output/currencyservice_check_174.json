@@ -1,0 +1,57 @@
+{
+  "service": "currencyservice",
+  "file": "ob_workspace/currencyservice/server.js",
+  "function": "check",
+  "lang": "javascript",
+  "lines": "174-176",
+  "slicing_stats": {
+    "original_tokens": 22,
+    "slice_tokens": 22,
+    "original_lines": 3,
+    "kept_lines": 3,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3
+  ],
+  "slice_preview": "function check (call, callback) {\n  callback(null, { status: 'SERVING' });\n}",
+  "slice_tokens_preview": [
+    "function",
+    "check",
+    "(",
+    "call",
+    ",",
+    "callback",
+    ")",
+    "{",
+    "callback",
+    "(",
+    "null",
+    ",",
+    "{",
+    "status",
+    ":",
+    "'",
+    "SERVING",
+    "'",
+    "}",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "callback",
+      8,
+      "computedFrom",
+      [
+        "callback"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

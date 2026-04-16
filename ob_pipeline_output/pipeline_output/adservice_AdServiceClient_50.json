@@ -1,0 +1,102 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdServiceClient.java",
+  "function": "AdServiceClient",
+  "lang": "java",
+  "lines": "50-53",
+  "slicing_stats": {
+    "original_tokens": 25,
+    "slice_tokens": 25,
+    "original_lines": 4,
+    "kept_lines": 4,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "slice_preview": "  private AdServiceClient(ManagedChannel channel) {\n    this.channel = channel;\n    blockingStub = hipstershop.AdServiceGrpc.newBlockingStub(channel);\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "AdServiceClient",
+    "(",
+    "ManagedChannel",
+    "channel",
+    ")",
+    "{",
+    "this",
+    ".",
+    "channel",
+    "=",
+    "channel",
+    ";",
+    "blockingStub",
+    "=",
+    "hipstershop",
+    ".",
+    "AdServiceGrpc",
+    ".",
+    "newBlockingStub"
+  ],
+  "slice_dfg_preview": [
+    [
+      "channel",
+      11,
+      "computedFrom",
+      [
+        "channel"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "hipstershop",
+      15,
+      "computedFrom",
+      [
+        "hipstershop"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "AdServiceGrpc",
+      17,
+      "computedFrom",
+      [
+        "AdServiceGrpc"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "newBlockingStub",
+      19,
+      "computedFrom",
+      [
+        "newBlockingStub"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "channel",
+      21,
+      "computedFrom",
+      [
+        "channel"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

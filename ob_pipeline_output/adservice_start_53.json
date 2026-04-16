@@ -1,0 +1,121 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdService.java",
+  "function": "start",
+  "lang": "java",
+  "lines": "53-75",
+  "slicing_stats": {
+    "original_tokens": 148,
+    "slice_tokens": 148,
+    "original_lines": 23,
+    "kept_lines": 23,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "slice_preview": "  private void start() throws IOException {\n    int port = Integer.parseInt(System.getenv().getOrDefault(\"PORT\", \"9555\"));\n    healthMgr = new HealthStatusManager();\n\n    server =\n        ServerBuilder.forPort(port)\n            .addService(new AdServiceImpl())\n            .addService(healthMgr.getHealthService())\n            .build()\n            .start();\n    logger.info(\"Ad Service started, listening on \" + port);\n    Runtime.getRuntime()\n        .addShutdownHook(\n            new Thread(\n      ",
+  "slice_tokens_preview": [
+    "private",
+    "void",
+    "start",
+    "(",
+    ")",
+    "throws",
+    "IOException",
+    "{",
+    "int",
+    "port",
+    "=",
+    "Integer",
+    ".",
+    "parseInt",
+    "(",
+    "System",
+    ".",
+    "getenv",
+    "(",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "Integer",
+      11,
+      "computedFrom",
+      [
+        "Integer"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "parseInt",
+      13,
+      "computedFrom",
+      [
+        "parseInt"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "System",
+      15,
+      "computedFrom",
+      [
+        "System"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "getenv",
+      17,
+      "computedFrom",
+      [
+        "getenv"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "getOrDefault",
+      21,
+      "computedFrom",
+      [
+        "getOrDefault"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdService.java",
+  "function": "initTracing",
+  "lang": "java",
+  "lines": "209-220",
+  "slicing_stats": {
+    "original_tokens": 62,
+    "slice_tokens": 62,
+    "original_lines": 12,
+    "kept_lines": 12,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "slice_preview": "  private static void initTracing() {\n    if (System.getenv(\"DISABLE_TRACING\") != null) {\n      logger.info(\"Tracing disabled.\");\n      return;\n    }\n    logger.info(\"Tracing enabled but temporarily unavailable\");\n    logger.info(\"See https://github.com/GoogleCloudPlatform/microservices-demo/issues/422 for more info.\");\n\n    // TODO(arbrown) Implement OpenTelemetry tracing\n    \n    logger.info(\"Tracing enabled - Stackdriver exporter initialized.\");\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "static",
+    "void",
+    "initTracing",
+    "(",
+    ")",
+    "{",
+    "if",
+    "(",
+    "System",
+    ".",
+    "getenv",
+    "(",
+    "\"",
+    "DISABLE_TRACING",
+    "\"",
+    ")",
+    "!=",
+    "null",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "System",
+      9,
+      "computedFrom",
+      [
+        "System"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "getenv",
+      11,
+      "computedFrom",
+      [
+        "getenv"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "logger",
+      21,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "info",
+      23,
+      "computedFrom",
+      [
+        "info"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "logger",
+      33,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdServiceClient.java",
+  "function": "main",
+  "lang": "java",
+  "lines": "101-115",
+  "slicing_stats": {
+    "original_tokens": 93,
+    "slice_tokens": 93,
+    "original_lines": 15,
+    "kept_lines": 15,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "slice_preview": "  public static void main(String[] args) throws InterruptedException {\n    // Add final keyword to pass checkStyle.\n    final String contextKeys = getStringOrDefaultFromArgs(args, 0, \"camera\");\n    final String host = getStringOrDefaultFromArgs(args, 1, \"localhost\");\n    final int serverPort = getPortOrDefaultFromArgs(args);\n\n    AdServiceClient client = new AdServiceClient(host, serverPort);\n    try {\n      client.getAds(contextKeys);\n    } finally {\n      client.shutdown();\n    }\n\n    logger.i",
+  "slice_tokens_preview": [
+    "public",
+    "static",
+    "void",
+    "main",
+    "(",
+    "String",
+    "[",
+    "]",
+    "args",
+    ")",
+    "throws",
+    "InterruptedException",
+    "{",
+    "// Add final keyword to pass checkStyle.",
+    "final",
+    "String",
+    "contextKeys",
+    "=",
+    "getStringOrDefaultFromArgs",
+    "("
+  ],
+  "slice_dfg_preview": [
+    [
+      "getStringOrDefaultFromArgs",
+      18,
+      "computedFrom",
+      [
+        "getStringOrDefaultFromArgs"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "args",
+      20,
+      "computedFrom",
+      [
+        "args"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "contextKeys",
+      16,
+      "computedFrom",
+      [
+        "contextKeys"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "getStringOrDefaultFromArgs",
+      33,
+      "computedFrom",
+      [
+        "getStringOrDefaultFromArgs"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "args",
+      35,
+      "computedFrom",
+      [
+        "args"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

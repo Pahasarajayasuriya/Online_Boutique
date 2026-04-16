@@ -1,0 +1,109 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdServiceClient.java",
+  "function": "getPortOrDefaultFromArgs",
+  "lang": "java",
+  "lines": "76-86",
+  "slicing_stats": {
+    "original_tokens": 73,
+    "slice_tokens": 73,
+    "original_lines": 11,
+    "kept_lines": 11,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "slice_preview": "  private static int getPortOrDefaultFromArgs(String[] args) {\n    int portNumber = 9555;\n    if (2 < args.length) {\n      try {\n        portNumber = Integer.parseInt(args[2]);\n      } catch (NumberFormatException e) {\n        logger.warn(String.format(\"Port %s is invalid, use default port %d.\", args[2], 9555));\n      }\n    }\n    return portNumber;\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "static",
+    "int",
+    "getPortOrDefaultFromArgs",
+    "(",
+    "String",
+    "[",
+    "]",
+    "args",
+    ")",
+    "{",
+    "int",
+    "portNumber",
+    "=",
+    "9555",
+    ";",
+    "if",
+    "(",
+    "2",
+    "<"
+  ],
+  "slice_dfg_preview": [
+    [
+      "portNumber",
+      12,
+      "computedFrom",
+      [
+        "portNumber"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "args",
+      20,
+      "computedFrom",
+      [
+        "args"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "length",
+      22,
+      "computedFrom",
+      [
+        "length"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "Integer",
+      29,
+      "computedFrom",
+      [
+        "Integer"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "parseInt",
+      31,
+      "computedFrom",
+      [
+        "parseInt"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

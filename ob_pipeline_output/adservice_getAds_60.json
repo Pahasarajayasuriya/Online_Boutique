@@ -1,0 +1,113 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdServiceClient.java",
+  "function": "getAds",
+  "lang": "java",
+  "lines": "60-74",
+  "slicing_stats": {
+    "original_tokens": 113,
+    "slice_tokens": 113,
+    "original_lines": 15,
+    "kept_lines": 15,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "slice_preview": "  public void getAds(String contextKey) {\n    logger.info(\"Get Ads with context \" + contextKey + \" ...\");\n    AdRequest request = AdRequest.newBuilder().addContextKeys(contextKey).build();\n    AdResponse response;\n\n    try {\n      response = blockingStub.getAds(request);\n    } catch (StatusRuntimeException e) {\n      logger.log(Level.WARN, \"RPC failed: \" + e.getStatus());\n      return;\n    } \n    for (Ad ads : response.getAdsList()) {\n      logger.info(\"Ads: \" + ads.getText());\n    }\n  }",
+  "slice_tokens_preview": [
+    "public",
+    "void",
+    "getAds",
+    "(",
+    "String",
+    "contextKey",
+    ")",
+    "{",
+    "logger",
+    ".",
+    "info",
+    "(",
+    "\"",
+    "Get Ads with context ",
+    "\"",
+    "+",
+    "contextKey",
+    "+",
+    "\"",
+    " ..."
+  ],
+  "slice_dfg_preview": [
+    [
+      "logger",
+      8,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "info",
+      10,
+      "computedFrom",
+      [
+        "info"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "contextKey",
+      16,
+      "computedFrom",
+      [
+        "contextKey"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "AdRequest",
+      26,
+      "computedFrom",
+      [
+        "AdRequest"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "newBuilder",
+      28,
+      "computedFrom",
+      [
+        "newBuilder"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

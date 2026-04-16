@@ -1,0 +1,113 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdService.java",
+  "function": "main",
+  "lang": "java",
+  "lines": "223-237",
+  "slicing_stats": {
+    "original_tokens": 70,
+    "slice_tokens": 70,
+    "original_lines": 15,
+    "kept_lines": 15,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "slice_preview": "  public static void main(String[] args) throws IOException, InterruptedException {\n\n    new Thread(\n            () -> {\n              initStats();\n              initTracing();\n            })\n        .start();\n\n    // Start the RPC server. You shouldn't see any output from gRPC before this.\n    logger.info(\"AdService starting.\");\n    final AdService service = AdService.getInstance();\n    service.start();\n    service.blockUntilShutdown();\n  }",
+  "slice_tokens_preview": [
+    "public",
+    "static",
+    "void",
+    "main",
+    "(",
+    "String",
+    "[",
+    "]",
+    "args",
+    ")",
+    "throws",
+    "IOException",
+    ",",
+    "InterruptedException",
+    "{",
+    "new",
+    "Thread",
+    "(",
+    "(",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "start",
+      33,
+      "computedFrom",
+      [
+        "start"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "logger",
+      38,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "info",
+      40,
+      "computedFrom",
+      [
+        "info"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "AdService",
+      51,
+      "computedFrom",
+      [
+        "AdService"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "getInstance",
+      53,
+      "computedFrom",
+      [
+        "getInstance"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

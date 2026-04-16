@@ -1,0 +1,113 @@
+{
+  "service": "currencyservice",
+  "file": "ob_workspace/currencyservice/server.js",
+  "function": "main",
+  "lang": "javascript",
+  "lines": "182-196",
+  "slicing_stats": {
+    "original_tokens": 102,
+    "slice_tokens": 102,
+    "original_lines": 15,
+    "kept_lines": 15,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "slice_preview": "function main () {\n  logger.info(`Starting gRPC server on port ${PORT}...`);\n  const server = new grpc.Server();\n  server.addService(shopProto.CurrencyService.service, {getSupportedCurrencies, convert});\n  server.addService(healthProto.Health.service, {check});\n\n  server.bindAsync(\n    `[::]:${PORT}`,\n    grpc.ServerCredentials.createInsecure(),\n    function() {\n      logger.info(`CurrencyService gRPC server started on port ${PORT}`);\n      server.start();\n    },\n   );\n}",
+  "slice_tokens_preview": [
+    "function",
+    "main",
+    "(",
+    ")",
+    "{",
+    "logger",
+    ".",
+    "info",
+    "(",
+    "`",
+    "${",
+    "PORT",
+    "}",
+    "`",
+    ")",
+    ";",
+    "const",
+    "server",
+    "=",
+    "new"
+  ],
+  "slice_dfg_preview": [
+    [
+      "logger",
+      5,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "PORT",
+      11,
+      "computedFrom",
+      [
+        "PORT"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "grpc",
+      20,
+      "computedFrom",
+      [
+        "grpc"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "server",
+      17,
+      "computedFrom",
+      [
+        "server"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "server",
+      26,
+      "computedFrom",
+      [
+        "server"
+      ],
+      [
+        17
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "service": "emailservice",
+  "file": "ob_workspace/emailservice/email_server.py",
+  "function": "start",
+  "lang": "python",
+  "lines": "118-137",
+  "slicing_stats": {
+    "original_tokens": 119,
+    "slice_tokens": 119,
+    "original_lines": 20,
+    "kept_lines": 20,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "slice_preview": "def start(dummy_mode):\n  server = grpc.server(futures.ThreadPoolExecutor(max_workers=10),)\n  service = None\n  if dummy_mode:\n    service = DummyEmailService()\n  else:\n    raise Exception('non-dummy mode not implemented yet')\n\n  demo_pb2_grpc.add_EmailServiceServicer_to_server(service, server)\n  health_pb2_grpc.add_HealthServicer_to_server(service, server)\n\n  port = os.environ.get('PORT', \"8080\")\n  logger.info(\"listening on port: \"+port)\n  server.add_insecure_port('[::]:'+port)\n  server.start()\n ",
+  "slice_tokens_preview": [
+    "def",
+    "start",
+    "(",
+    "dummy_mode",
+    ")",
+    ":",
+    "server",
+    "=",
+    "grpc",
+    ".",
+    "server",
+    "(",
+    "futures",
+    ".",
+    "ThreadPoolExecutor",
+    "(",
+    "max_workers",
+    "=",
+    "10",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "grpc",
+      8,
+      "computedFrom",
+      [
+        "grpc"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "server",
+      10,
+      "computedFrom",
+      [
+        "server"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "futures",
+      12,
+      "computedFrom",
+      [
+        "futures"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "ThreadPoolExecutor",
+      14,
+      "computedFrom",
+      [
+        "ThreadPoolExecutor"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "max_workers",
+      16,
+      "computedFrom",
+      [
+        "max_workers"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

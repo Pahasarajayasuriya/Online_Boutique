@@ -1,0 +1,101 @@
+{
+  "service": "emailservice",
+  "file": "ob_workspace/emailservice/email_server.py",
+  "function": "Check",
+  "lang": "python",
+  "lines": "53-55",
+  "slicing_stats": {
+    "original_tokens": 23,
+    "slice_tokens": 23,
+    "original_lines": 3,
+    "kept_lines": 3,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3
+  ],
+  "slice_preview": "  def Check(self, request, context):\n    return health_pb2.HealthCheckResponse(\n      status=health_pb2.HealthCheckResponse.SERVING)",
+  "slice_tokens_preview": [
+    "def",
+    "Check",
+    "(",
+    "self",
+    ",",
+    "request",
+    ",",
+    "context",
+    ")",
+    ":",
+    "return",
+    "health_pb2",
+    ".",
+    "HealthCheckResponse",
+    "(",
+    "status",
+    "=",
+    "health_pb2",
+    ".",
+    "HealthCheckResponse"
+  ],
+  "slice_dfg_preview": [
+    [
+      "health_pb2",
+      11,
+      "computedFrom",
+      [
+        "health_pb2"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "HealthCheckResponse",
+      13,
+      "computedFrom",
+      [
+        "HealthCheckResponse"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "status",
+      15,
+      "computedFrom",
+      [
+        "status"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "health_pb2",
+      17,
+      "computedFrom",
+      [
+        "health_pb2"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "HealthCheckResponse",
+      19,
+      "computedFrom",
+      [
+        "HealthCheckResponse"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

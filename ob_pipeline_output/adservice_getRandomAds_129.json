@@ -1,0 +1,106 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdService.java",
+  "function": "getRandomAds",
+  "lang": "java",
+  "lines": "129-136",
+  "slicing_stats": {
+    "original_tokens": 78,
+    "slice_tokens": 78,
+    "original_lines": 8,
+    "kept_lines": 8,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "slice_preview": "  private List<Ad> getRandomAds() {\n    List<Ad> ads = new ArrayList<>(MAX_ADS_TO_SERVE);\n    Collection<Ad> allAds = adsMap.values();\n    for (int i = 0; i < MAX_ADS_TO_SERVE; i++) {\n      ads.add(Iterables.get(allAds, random.nextInt(allAds.size())));\n    }\n    return ads;\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "List",
+    "<",
+    "Ad",
+    ">",
+    "getRandomAds",
+    "(",
+    ")",
+    "{",
+    "List",
+    "<",
+    "Ad",
+    ">",
+    "ads",
+    "=",
+    "new",
+    "ArrayList",
+    "<",
+    ">",
+    "("
+  ],
+  "slice_dfg_preview": [
+    [
+      "MAX_ADS_TO_SERVE",
+      20,
+      "computedFrom",
+      [
+        "MAX_ADS_TO_SERVE"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "ads",
+      13,
+      "computedFrom",
+      [
+        "ads"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "adsMap",
+      29,
+      "computedFrom",
+      [
+        "adsMap"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "values",
+      31,
+      "computedFrom",
+      [
+        "values"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "allAds",
+      27,
+      "computedFrom",
+      [
+        "allAds"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

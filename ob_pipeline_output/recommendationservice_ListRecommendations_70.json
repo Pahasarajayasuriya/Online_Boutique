@@ -1,0 +1,115 @@
+{
+  "service": "recommendationservice",
+  "file": "ob_workspace/recommendationservice/recommendation_server.py",
+  "function": "ListRecommendations",
+  "lang": "python",
+  "lines": "70-86",
+  "slicing_stats": {
+    "original_tokens": 127,
+    "slice_tokens": 127,
+    "original_lines": 17,
+    "kept_lines": 17,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "slice_preview": "    def ListRecommendations(self, request, context):\n        max_responses = 5\n        # fetch list of products from product catalog stub\n        cat_response = product_catalog_stub.ListProducts(demo_pb2.Empty())\n        product_ids = [x.id for x in cat_response.products]\n        filtered_products = list(set(product_ids)-set(request.product_ids))\n        num_products = len(filtered_products)\n        num_return = min(max_responses, num_products)\n        # sample list of indicies to return\n       ",
+  "slice_tokens_preview": [
+    "def",
+    "ListRecommendations",
+    "(",
+    "self",
+    ",",
+    "request",
+    ",",
+    "context",
+    ")",
+    ":",
+    "max_responses",
+    "=",
+    "5",
+    "# fetch list of products from product catalog stub",
+    "cat_response",
+    "=",
+    "product_catalog_stub",
+    ".",
+    "ListProducts",
+    "("
+  ],
+  "slice_dfg_preview": [
+    [
+      "max_responses",
+      10,
+      "computedFrom",
+      [
+        "max_responses"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "product_catalog_stub",
+      16,
+      "computedFrom",
+      [
+        "product_catalog_stub"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "ListProducts",
+      18,
+      "computedFrom",
+      [
+        "ListProducts"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "demo_pb2",
+      20,
+      "computedFrom",
+      [
+        "demo_pb2"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "Empty",
+      22,
+      "computedFrom",
+      [
+        "Empty"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

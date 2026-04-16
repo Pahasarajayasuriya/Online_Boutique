@@ -1,0 +1,111 @@
+{
+  "service": "currencyservice",
+  "file": "ob_workspace/currencyservice/server.js",
+  "function": "_loadProto",
+  "lang": "javascript",
+  "lines": "91-103",
+  "slicing_stats": {
+    "original_tokens": 47,
+    "slice_tokens": 47,
+    "original_lines": 13,
+    "kept_lines": 13,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "slice_preview": "function _loadProto (path) {\n  const packageDefinition = protoLoader.loadSync(\n    path,\n    {\n      keepCase: true,\n      longs: String,\n      enums: String,\n      defaults: true,\n      oneofs: true\n    }\n  );\n  return grpc.loadPackageDefinition(packageDefinition);\n}",
+  "slice_tokens_preview": [
+    "function",
+    "_loadProto",
+    "(",
+    "path",
+    ")",
+    "{",
+    "const",
+    "packageDefinition",
+    "=",
+    "protoLoader",
+    ".",
+    "loadSync",
+    "(",
+    "path",
+    ",",
+    "{",
+    "keepCase",
+    ":",
+    "true",
+    ","
+  ],
+  "slice_dfg_preview": [
+    [
+      "protoLoader",
+      9,
+      "computedFrom",
+      [
+        "protoLoader"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "path",
+      13,
+      "computedFrom",
+      [
+        "path"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "String",
+      22,
+      "computedFrom",
+      [
+        "String"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "String",
+      26,
+      "computedFrom",
+      [
+        "String"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "packageDefinition",
+      7,
+      "computedFrom",
+      [
+        "packageDefinition"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

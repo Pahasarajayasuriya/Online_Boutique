@@ -1,0 +1,106 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdServiceClient.java",
+  "function": "AdServiceClient",
+  "lang": "java",
+  "lines": "40-47",
+  "slicing_stats": {
+    "original_tokens": 33,
+    "slice_tokens": 33,
+    "original_lines": 8,
+    "kept_lines": 8,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "slice_preview": "  private AdServiceClient(String host, int port) {\n    this(\n        ManagedChannelBuilder.forAddress(host, port)\n            // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid\n            // needing certificates.\n            .usePlaintext()\n            .build());\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "AdServiceClient",
+    "(",
+    "String",
+    "host",
+    ",",
+    "int",
+    "port",
+    ")",
+    "{",
+    "this",
+    "(",
+    "ManagedChannelBuilder",
+    ".",
+    "forAddress",
+    "(",
+    "host",
+    ",",
+    "port",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "ManagedChannelBuilder",
+      12,
+      "computedFrom",
+      [
+        "ManagedChannelBuilder"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "forAddress",
+      14,
+      "computedFrom",
+      [
+        "forAddress"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "host",
+      16,
+      "computedFrom",
+      [
+        "host"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "port",
+      18,
+      "computedFrom",
+      [
+        "port"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "usePlaintext",
+      23,
+      "computedFrom",
+      [
+        "usePlaintext"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdService.java",
+  "function": "blockUntilShutdown",
+  "lang": "java",
+  "lines": "143-147",
+  "slicing_stats": {
+    "original_tokens": 23,
+    "slice_tokens": 23,
+    "original_lines": 5,
+    "kept_lines": 5,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "slice_preview": "  private void blockUntilShutdown() throws InterruptedException {\n    if (server != null) {\n      server.awaitTermination();\n    }\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "void",
+    "blockUntilShutdown",
+    "(",
+    ")",
+    "throws",
+    "InterruptedException",
+    "{",
+    "if",
+    "(",
+    "server",
+    "!=",
+    "null",
+    ")",
+    "{",
+    "server",
+    ".",
+    "awaitTermination",
+    "(",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "server",
+      10,
+      "computedFrom",
+      [
+        "server"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "server",
+      15,
+      "computedFrom",
+      [
+        "server"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "awaitTermination",
+      17,
+      "computedFrom",
+      [
+        "awaitTermination"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

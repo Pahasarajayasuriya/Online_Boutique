@@ -1,0 +1,71 @@
+{
+  "service": "currencyservice",
+  "file": "ob_workspace/currencyservice/server.js",
+  "function": "getSupportedCurrencies",
+  "lang": "javascript",
+  "lines": "128-133",
+  "slicing_stats": {
+    "original_tokens": 44,
+    "slice_tokens": 44,
+    "original_lines": 6,
+    "kept_lines": 6,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "slice_preview": "function getSupportedCurrencies (call, callback) {\n  logger.info('Getting supported currencies...');\n  _getCurrencyData((data) => {\n    callback(null, {currency_codes: Object.keys(data)});\n  });\n}",
+  "slice_tokens_preview": [
+    "function",
+    "getSupportedCurrencies",
+    "(",
+    "call",
+    ",",
+    "callback",
+    ")",
+    "{",
+    "logger",
+    ".",
+    "info",
+    "(",
+    "'",
+    "Getting supported currencies...",
+    "'",
+    ")",
+    ";",
+    "_getCurrencyData",
+    "(",
+    "("
+  ],
+  "slice_dfg_preview": [
+    [
+      "logger",
+      8,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "_getCurrencyData",
+      17,
+      "computedFrom",
+      [
+        "_getCurrencyData"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

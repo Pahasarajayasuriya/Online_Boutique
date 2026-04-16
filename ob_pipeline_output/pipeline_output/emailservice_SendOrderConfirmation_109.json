@@ -1,0 +1,101 @@
+{
+  "service": "emailservice",
+  "file": "ob_workspace/emailservice/email_server.py",
+  "function": "SendOrderConfirmation",
+  "lang": "python",
+  "lines": "109-111",
+  "slicing_stats": {
+    "original_tokens": 31,
+    "slice_tokens": 31,
+    "original_lines": 3,
+    "kept_lines": 3,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3
+  ],
+  "slice_preview": "  def SendOrderConfirmation(self, request, context):\n    logger.info('A request to send order confirmation email to {} has been received.'.format(request.email))\n    return demo_pb2.Empty()",
+  "slice_tokens_preview": [
+    "def",
+    "SendOrderConfirmation",
+    "(",
+    "self",
+    ",",
+    "request",
+    ",",
+    "context",
+    ")",
+    ":",
+    "logger",
+    ".",
+    "info",
+    "(",
+    "'",
+    "A request to send order confirmation email to {} has been received.",
+    "'",
+    ".",
+    "format",
+    "("
+  ],
+  "slice_dfg_preview": [
+    [
+      "logger",
+      10,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "info",
+      12,
+      "computedFrom",
+      [
+        "info"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "format",
+      18,
+      "computedFrom",
+      [
+        "format"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "request",
+      20,
+      "computedFrom",
+      [
+        "request"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "email",
+      22,
+      "computedFrom",
+      [
+        "email"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

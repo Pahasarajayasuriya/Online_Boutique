@@ -1,0 +1,110 @@
+{
+  "service": "paymentservice",
+  "file": "ob_workspace/paymentservice/server.js",
+  "function": "<anonymous>",
+  "lang": "javascript",
+  "lines": "57-68",
+  "slicing_stats": {
+    "original_tokens": 59,
+    "slice_tokens": 59,
+    "original_lines": 12,
+    "kept_lines": 12,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "slice_preview": "  listen() {\n    const server = this.server \n    const port = this.port\n    server.bindAsync(\n      `[::]:${port}`,\n      grpc.ServerCredentials.createInsecure(),\n      function () {\n        logger.info(`PaymentService gRPC server started on port ${port}`);\n        server.start();\n      }\n    );\n  }",
+  "slice_tokens_preview": [
+    "listen",
+    "(",
+    ")",
+    "{",
+    "const",
+    "server",
+    "=",
+    "this",
+    ".",
+    "server",
+    "const",
+    "port",
+    "=",
+    "this",
+    ".",
+    "port",
+    "server",
+    ".",
+    "bindAsync",
+    "("
+  ],
+  "slice_dfg_preview": [
+    [
+      "listen",
+      0,
+      "computedFrom",
+      [
+        "listen"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "server",
+      5,
+      "computedFrom",
+      [
+        "server"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "port",
+      11,
+      "computedFrom",
+      [
+        "port"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "server",
+      16,
+      "computedFrom",
+      [
+        "server"
+      ],
+      [
+        5
+      ]
+    ],
+    [
+      "port",
+      22,
+      "computedFrom",
+      [
+        "port"
+      ],
+      [
+        11
+      ]
+    ]
+  ]
+}

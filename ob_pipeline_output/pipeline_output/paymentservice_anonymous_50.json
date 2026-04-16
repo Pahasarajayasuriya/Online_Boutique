@@ -1,0 +1,101 @@
+{
+  "service": "paymentservice",
+  "file": "ob_workspace/paymentservice/charge.js",
+  "function": "<anonymous>",
+  "lang": "javascript",
+  "lines": "50-52",
+  "slicing_stats": {
+    "original_tokens": 31,
+    "slice_tokens": 31,
+    "original_lines": 3,
+    "kept_lines": 3,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3
+  ],
+  "slice_preview": "  constructor (number, month, year) {\n    super(`Your credit card (ending ${number.substr(-4)}) expired on ${month}/${year}`);\n  }",
+  "slice_tokens_preview": [
+    "constructor",
+    "(",
+    "number",
+    ",",
+    "month",
+    ",",
+    "year",
+    ")",
+    "{",
+    "super",
+    "(",
+    "`",
+    "${",
+    "number",
+    ".",
+    "substr",
+    "(",
+    "-",
+    "4",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "constructor",
+      0,
+      "computedFrom",
+      [
+        "constructor"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "number",
+      2,
+      "computedFrom",
+      [
+        "number"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "month",
+      4,
+      "computedFrom",
+      [
+        "month"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "year",
+      6,
+      "computedFrom",
+      [
+        "year"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "number",
+      13,
+      "computedFrom",
+      [
+        "number"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

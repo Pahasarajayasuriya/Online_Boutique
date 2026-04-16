@@ -1,0 +1,124 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdService.java",
+  "function": "getAds",
+  "lang": "java",
+  "lines": "93-118",
+  "slicing_stats": {
+    "original_tokens": 212,
+    "slice_tokens": 212,
+    "original_lines": 26,
+    "kept_lines": 26,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "slice_preview": "    @Override\n    public void getAds(AdRequest req, StreamObserver<AdResponse> responseObserver) {\n      AdService service = AdService.getInstance();\n      try {\n        List<Ad> allAds = new ArrayList<>();\n        logger.info(\"received ad request (context_words=\" + req.getContextKeysList() + \")\");\n        if (req.getContextKeysCount() > 0) {\n          for (int i = 0; i < req.getContextKeysCount(); i++) {\n            Collection<Ad> ads = service.getAdsByCategory(req.getContextKeys(i));\n         ",
+  "slice_tokens_preview": [
+    "@",
+    "Override",
+    "public",
+    "void",
+    "getAds",
+    "(",
+    "AdRequest",
+    "req",
+    ",",
+    "StreamObserver",
+    "<",
+    "AdResponse",
+    ">",
+    "responseObserver",
+    ")",
+    "{",
+    "AdService",
+    "service",
+    "=",
+    "AdService"
+  ],
+  "slice_dfg_preview": [
+    [
+      "AdService",
+      19,
+      "computedFrom",
+      [
+        "AdService"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "getInstance",
+      21,
+      "computedFrom",
+      [
+        "getInstance"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "service",
+      17,
+      "computedFrom",
+      [
+        "service"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "allAds",
+      31,
+      "computedFrom",
+      [
+        "allAds"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "logger",
+      40,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

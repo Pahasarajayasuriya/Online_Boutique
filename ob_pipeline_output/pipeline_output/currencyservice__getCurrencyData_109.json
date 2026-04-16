@@ -1,0 +1,91 @@
+{
+  "service": "currencyservice",
+  "file": "ob_workspace/currencyservice/server.js",
+  "function": "_getCurrencyData",
+  "lang": "javascript",
+  "lines": "109-112",
+  "slicing_stats": {
+    "original_tokens": 22,
+    "slice_tokens": 22,
+    "original_lines": 4,
+    "kept_lines": 4,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "slice_preview": "function _getCurrencyData (callback) {\n  const data = require('./data/currency_conversion.json');\n  callback(data);\n}",
+  "slice_tokens_preview": [
+    "function",
+    "_getCurrencyData",
+    "(",
+    "callback",
+    ")",
+    "{",
+    "const",
+    "data",
+    "=",
+    "require",
+    "(",
+    "'",
+    "./data/currency_conversion.json",
+    "'",
+    ")",
+    ";",
+    "callback",
+    "(",
+    "data",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "require",
+      9,
+      "computedFrom",
+      [
+        "require"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "data",
+      7,
+      "computedFrom",
+      [
+        "data"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "callback",
+      16,
+      "computedFrom",
+      [
+        "callback"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "data",
+      18,
+      "computedFrom",
+      [
+        "data"
+      ],
+      [
+        7
+      ]
+    ]
+  ]
+}

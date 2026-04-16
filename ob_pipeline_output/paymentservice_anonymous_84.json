@@ -1,0 +1,116 @@
+{
+  "service": "paymentservice",
+  "file": "ob_workspace/paymentservice/server.js",
+  "function": "<anonymous>",
+  "lang": "javascript",
+  "lines": "84-101",
+  "slicing_stats": {
+    "original_tokens": 84,
+    "slice_tokens": 84,
+    "original_lines": 18,
+    "kept_lines": 18,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "slice_preview": "  loadAllProtos(protoRoot) {\n    const hipsterShopPackage = this.packages.hipsterShop.hipstershop;\n    const healthPackage = this.packages.health.grpc.health.v1;\n\n    this.server.addService(\n      hipsterShopPackage.PaymentService.service,\n      {\n        charge: HipsterShopServer.ChargeServiceHandler.bind(this)\n      }\n    );\n\n    this.server.addService(\n      healthPackage.Health.service,\n      {\n        check: HipsterShopServer.CheckHandler.bind(this)\n      }\n    );\n  }",
+  "slice_tokens_preview": [
+    "loadAllProtos",
+    "(",
+    "protoRoot",
+    ")",
+    "{",
+    "const",
+    "hipsterShopPackage",
+    "=",
+    "this",
+    ".",
+    "packages",
+    ".",
+    "hipsterShop",
+    ".",
+    "hipstershop",
+    ";",
+    "const",
+    "healthPackage",
+    "=",
+    "this"
+  ],
+  "slice_dfg_preview": [
+    [
+      "loadAllProtos",
+      0,
+      "computedFrom",
+      [
+        "loadAllProtos"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "protoRoot",
+      2,
+      "computedFrom",
+      [
+        "protoRoot"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "hipsterShopPackage",
+      6,
+      "computedFrom",
+      [
+        "hipsterShopPackage"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "healthPackage",
+      17,
+      "computedFrom",
+      [
+        "healthPackage"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "hipsterShopPackage",
+      37,
+      "computedFrom",
+      [
+        "hipsterShopPackage"
+      ],
+      [
+        6
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "service": "currencyservice",
+  "file": "ob_workspace/currencyservice/server.js",
+  "function": "_carry",
+  "lang": "javascript",
+  "lines": "117-123",
+  "slicing_stats": {
+    "original_tokens": 70,
+    "slice_tokens": 70,
+    "original_lines": 7,
+    "kept_lines": 7,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "slice_preview": "function _carry (amount) {\n  const fractionSize = Math.pow(10, 9);\n  amount.nanos += (amount.units % 1) * fractionSize;\n  amount.units = Math.floor(amount.units) + Math.floor(amount.nanos / fractionSize);\n  amount.nanos = amount.nanos % fractionSize;\n  return amount;\n}",
+  "slice_tokens_preview": [
+    "function",
+    "_carry",
+    "(",
+    "amount",
+    ")",
+    "{",
+    "const",
+    "fractionSize",
+    "=",
+    "Math",
+    ".",
+    "pow",
+    "(",
+    "10",
+    ",",
+    "9",
+    ")",
+    ";",
+    "amount",
+    "."
+  ],
+  "slice_dfg_preview": [
+    [
+      "Math",
+      9,
+      "computedFrom",
+      [
+        "Math"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "fractionSize",
+      7,
+      "computedFrom",
+      [
+        "fractionSize"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "amount",
+      23,
+      "computedFrom",
+      [
+        "amount"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "fractionSize",
+      30,
+      "computedFrom",
+      [
+        "fractionSize"
+      ],
+      [
+        7
+      ]
+    ],
+    [
+      "Math",
+      36,
+      "computedFrom",
+      [
+        "Math"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

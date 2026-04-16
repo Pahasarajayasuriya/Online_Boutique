@@ -1,0 +1,119 @@
+{
+  "service": "emailservice",
+  "file": "ob_workspace/emailservice/email_server.py",
+  "function": "SendOrderConfirmation",
+  "lang": "python",
+  "lines": "86-106",
+  "slicing_stats": {
+    "original_tokens": 124,
+    "slice_tokens": 124,
+    "original_lines": 21,
+    "kept_lines": 21,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "slice_preview": "  def SendOrderConfirmation(self, request, context):\n    email = request.email\n    order = request.order\n\n    try:\n      confirmation = template.render(order = order)\n    except TemplateError as err:\n      context.set_details(\"An error occurred when preparing the confirmation mail.\")\n      logger.error(err.message)\n      context.set_code(grpc.StatusCode.INTERNAL)\n      return demo_pb2.Empty()\n\n    try:\n      EmailService.send_email(self.client, email, confirmation)\n    except GoogleAPICallError ",
+  "slice_tokens_preview": [
+    "def",
+    "SendOrderConfirmation",
+    "(",
+    "self",
+    ",",
+    "request",
+    ",",
+    "context",
+    ")",
+    ":",
+    "email",
+    "=",
+    "request",
+    ".",
+    "email",
+    "order",
+    "=",
+    "request",
+    ".",
+    "order"
+  ],
+  "slice_dfg_preview": [
+    [
+      "request",
+      12,
+      "computedFrom",
+      [
+        "request"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "email",
+      14,
+      "computedFrom",
+      [
+        "email"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "email",
+      10,
+      "computedFrom",
+      [
+        "email"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "request",
+      17,
+      "computedFrom",
+      [
+        "request"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "order",
+      19,
+      "computedFrom",
+      [
+        "order"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

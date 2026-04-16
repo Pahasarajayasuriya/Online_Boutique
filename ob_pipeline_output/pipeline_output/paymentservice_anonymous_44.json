@@ -1,0 +1,74 @@
+{
+  "service": "paymentservice",
+  "file": "ob_workspace/paymentservice/charge.js",
+  "function": "<anonymous>",
+  "lang": "javascript",
+  "lines": "44-46",
+  "slicing_stats": {
+    "original_tokens": 15,
+    "slice_tokens": 15,
+    "original_lines": 3,
+    "kept_lines": 3,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3
+  ],
+  "slice_preview": "  constructor (cardType) {\n    super(`Sorry, we cannot process ${cardType} credit cards. Only VISA or MasterCard is accepted.`);\n  }",
+  "slice_tokens_preview": [
+    "constructor",
+    "(",
+    "cardType",
+    ")",
+    "{",
+    "super",
+    "(",
+    "`",
+    "${",
+    "cardType",
+    "}",
+    "`",
+    ")",
+    ";",
+    "}"
+  ],
+  "slice_dfg_preview": [
+    [
+      "constructor",
+      0,
+      "computedFrom",
+      [
+        "constructor"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "cardType",
+      2,
+      "computedFrom",
+      [
+        "cardType"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "cardType",
+      9,
+      "computedFrom",
+      [
+        "cardType"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

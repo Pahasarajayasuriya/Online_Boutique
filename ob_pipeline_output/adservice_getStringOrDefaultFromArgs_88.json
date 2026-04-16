@@ -1,0 +1,106 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdServiceClient.java",
+  "function": "getStringOrDefaultFromArgs",
+  "lang": "java",
+  "lines": "88-95",
+  "slicing_stats": {
+    "original_tokens": 45,
+    "slice_tokens": 45,
+    "original_lines": 8,
+    "kept_lines": 8,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "slice_preview": "  private static String getStringOrDefaultFromArgs(\n      String[] args, int index, @Nullable String defaultString) {\n    String s = defaultString;\n    if (index < args.length) {\n      s = args[index];\n    }\n    return s;\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "static",
+    "String",
+    "getStringOrDefaultFromArgs",
+    "(",
+    "String",
+    "[",
+    "]",
+    "args",
+    ",",
+    "int",
+    "index",
+    ",",
+    "@",
+    "Nullable",
+    "String",
+    "defaultString",
+    ")",
+    "{",
+    "String"
+  ],
+  "slice_dfg_preview": [
+    [
+      "defaultString",
+      22,
+      "computedFrom",
+      [
+        "defaultString"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "s",
+      20,
+      "computedFrom",
+      [
+        "s"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "index",
+      26,
+      "computedFrom",
+      [
+        "index"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "args",
+      28,
+      "computedFrom",
+      [
+        "args"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "length",
+      30,
+      "computedFrom",
+      [
+        "length"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "service": "adservice",
+  "file": "ob_workspace/adservice/AdService.java",
+  "function": "initStats",
+  "lang": "java",
+  "lines": "195-207",
+  "slicing_stats": {
+    "original_tokens": 55,
+    "slice_tokens": 55,
+    "original_lines": 13,
+    "kept_lines": 13,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "slice_preview": "  private static void initStats() {\n    if (System.getenv(\"DISABLE_STATS\") != null) {\n      logger.info(\"Stats disabled.\");\n      return;\n    }\n    logger.info(\"Stats enabled, but temporarily unavailable\");\n\n    long sleepTime = 10; /* seconds */\n    int maxAttempts = 5;\n\n    // TODO(arbrown) Implement OpenTelemetry stats\n\n  }",
+  "slice_tokens_preview": [
+    "private",
+    "static",
+    "void",
+    "initStats",
+    "(",
+    ")",
+    "{",
+    "if",
+    "(",
+    "System",
+    ".",
+    "getenv",
+    "(",
+    "\"",
+    "DISABLE_STATS",
+    "\"",
+    ")",
+    "!=",
+    "null",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "System",
+      9,
+      "computedFrom",
+      [
+        "System"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "getenv",
+      11,
+      "computedFrom",
+      [
+        "getenv"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "logger",
+      21,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "info",
+      23,
+      "computedFrom",
+      [
+        "info"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "logger",
+      33,
+      "computedFrom",
+      [
+        "logger"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

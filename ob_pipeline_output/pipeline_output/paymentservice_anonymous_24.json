@@ -1,0 +1,109 @@
+{
+  "service": "paymentservice",
+  "file": "ob_workspace/paymentservice/server.js",
+  "function": "<anonymous>",
+  "lang": "javascript",
+  "lines": "24-34",
+  "slicing_stats": {
+    "original_tokens": 78,
+    "slice_tokens": 78,
+    "original_lines": 11,
+    "kept_lines": 11,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "slice_preview": "  constructor(protoRoot, port = HipsterShopServer.PORT) {\n    this.port = port;\n\n    this.packages = {\n      hipsterShop: this.loadProto(path.join(protoRoot, 'demo.proto')),\n      health: this.loadProto(path.join(protoRoot, 'grpc/health/v1/health.proto'))\n    };\n\n    this.server = new grpc.Server();\n    this.loadAllProtos(protoRoot);\n  }",
+  "slice_tokens_preview": [
+    "constructor",
+    "(",
+    "protoRoot",
+    ",",
+    "port",
+    "=",
+    "HipsterShopServer",
+    ".",
+    "PORT",
+    ")",
+    "{",
+    "this",
+    ".",
+    "port",
+    "=",
+    "port",
+    ";",
+    "this",
+    ".",
+    "packages"
+  ],
+  "slice_dfg_preview": [
+    [
+      "constructor",
+      0,
+      "computedFrom",
+      [
+        "constructor"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "protoRoot",
+      2,
+      "computedFrom",
+      [
+        "protoRoot"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "HipsterShopServer",
+      6,
+      "computedFrom",
+      [
+        "HipsterShopServer"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "port",
+      4,
+      "computedFrom",
+      [
+        "port"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "port",
+      15,
+      "computedFrom",
+      [
+        "port"
+      ],
+      [
+        4
+      ]
+    ]
+  ]
+}

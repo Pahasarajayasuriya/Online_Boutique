@@ -1,0 +1,79 @@
+{
+  "service": "emailservice",
+  "file": "ob_workspace/emailservice/email_server.py",
+  "function": "__init__",
+  "lang": "python",
+  "lines": "62-64",
+  "slicing_stats": {
+    "original_tokens": 20,
+    "slice_tokens": 20,
+    "original_lines": 3,
+    "kept_lines": 3,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3
+  ],
+  "slice_preview": "  def __init__(self):\n    raise Exception('cloud mail client not implemented')\n    super().__init__()",
+  "slice_tokens_preview": [
+    "def",
+    "__init__",
+    "(",
+    "self",
+    ")",
+    ":",
+    "raise",
+    "Exception",
+    "(",
+    "'",
+    "cloud mail client not implemented",
+    "'",
+    ")",
+    "super",
+    "(",
+    ")",
+    ".",
+    "__init__",
+    "(",
+    ")"
+  ],
+  "slice_dfg_preview": [
+    [
+      "Exception",
+      7,
+      "computedFrom",
+      [
+        "Exception"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "super",
+      13,
+      "computedFrom",
+      [
+        "super"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "__init__",
+      17,
+      "computedFrom",
+      [
+        "__init__"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}

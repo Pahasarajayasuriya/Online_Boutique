@@ -1,0 +1,116 @@
+{
+  "service": "emailservice",
+  "file": "ob_workspace/emailservice/email_server.py",
+  "function": "send_email",
+  "lang": "python",
+  "lines": "67-84",
+  "slicing_stats": {
+    "original_tokens": 103,
+    "slice_tokens": 103,
+    "original_lines": 18,
+    "kept_lines": 18,
+    "dfg_lines_found": 0,
+    "reduction_pct": 0.0,
+    "slicing_applied": false
+  },
+  "kept_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "slice_preview": "  def send_email(client, email_address, content):\n    response = client.send_message(\n      sender = client.sender_path(project_id, region, sender_id),\n      envelope_from_authority = '',\n      header_from_authority = '',\n      envelope_from_address = from_address,\n      simple_message = {\n        \"from\": {\n          \"address_spec\": from_address,\n        },\n        \"to\": [{\n          \"address_spec\": email_address\n        }],\n        \"subject\": \"Your Confirmation Email\",\n        \"html_body\": cont",
+  "slice_tokens_preview": [
+    "def",
+    "send_email",
+    "(",
+    "client",
+    ",",
+    "email_address",
+    ",",
+    "content",
+    ")",
+    ":",
+    "response",
+    "=",
+    "client",
+    ".",
+    "send_message",
+    "(",
+    "sender",
+    "=",
+    "client",
+    "."
+  ],
+  "slice_dfg_preview": [
+    [
+      "client",
+      12,
+      "computedFrom",
+      [
+        "client"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "send_message",
+      14,
+      "computedFrom",
+      [
+        "send_message"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "sender",
+      16,
+      "computedFrom",
+      [
+        "sender"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "client",
+      18,
+      "computedFrom",
+      [
+        "client"
+      ],
+      [
+        -1
+      ]
+    ],
+    [
+      "sender_path",
+      20,
+      "computedFrom",
+      [
+        "sender_path"
+      ],
+      [
+        -1
+      ]
+    ]
+  ]
+}
